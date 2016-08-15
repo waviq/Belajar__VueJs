@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" type="text/css" href="node_modules/bootstrap/dist/css/bootstrap.css">
+
+    <style>
+        .container{
+            padding: 3em;
+        }
+    </style>
+</head>
+<body>
+
+<div id="my-app">
+
+    <div class="container">
+
+        <pre>
+             {{$data|json}}
+        </pre>
+
+        <div class="row">
+            <div v-for="plan in plans">
+                <plan :plan="plan":active.sync="active"></plan>
+            </div>
+
+            <template id="plan-template">
+                <span>{{plan.name}}</span>
+                <span style="margin-left: 10em;margin-right: 10em;">{{plan.price}}/month</span>
+                <button class="btn btn-default" @click="setActivePlan" v-show="plan.name !== active.name">
+                    {{isUpgrate ? 'Upgrade' : 'Downgrade'}}
+                </button>
+
+                <span v-else>
+                    Selected
+                </span>
+            </template>
+        </div>
+
+    </div>
+
+
+
+</div>
+
+
+<script src="node_modules/vue/dist/vue.js"></script>
+<script src="js/main_2.js"></script>
+</body>
+</html>

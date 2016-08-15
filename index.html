@@ -1,0 +1,102 @@
+<!--
+1. v-model = digunakan untuk 2 way binding, cara kerjanya variavel pesan yang ada di data, diganti dengan model yang ada di input
+2. v-show = digunakan untuk menampilkan sesuatu jika dalam kondisi true (bisa juga pakai v-if)
+3. v-if = digunakan untuk melakukan ekseskusi apapun selama kondisi true
+
+Event di Vue Js
+1. v-on:submit.prevent = prevent digunakan untuk agar tidak menjalankan 'action url' yang ada dalam form, bisa juga dilakukan dalam file js
+2. selain menggunakan v-on, bisa juga menggunakan @submit="namaMethod", fungsinya sama untuk menjalankan event tertentu pada method tertentu
+3. @click ="namaMethod/langsung bisa pakai fungsi eventnya" = event yang digunakan jika click sesuatu, maka akan jalanin event tertentu
+            (namun perlu diingat, secara default click e secara global efeknya. jdi event e akan jalan semua secara global click)
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" type="text/css" href="node_modules/bootstrap/dist/css/bootstrap.css">
+    <style>
+        .container {
+            padding-top: 3em;
+        }
+        .has-error{
+            font-style: italic;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+<div id="app">
+    <div class="container">
+        <!--<h1>{{pesan}}</h1>-->
+
+
+        <div class="form-group">
+            <input class="form-control" type="text" v-model="pesan"/>
+        </div>
+
+        <form class="form" action="done.html" v-on:submit="handleAction">
+            <div class="form-group">
+                <div class="form-group" v-bind:class="{'has-error':!pesan,'has-success':pesan}">
+                    <span class="help-block" v-show="!pesan">Wajib masukan pesan anda</span>
+                    <textarea class="form-control" v-model="pesan"></textarea>
+                </div>
+
+
+            </div>
+
+            <div class="form-group">
+                <button class="btn btn-success" type="submit" v-show="pesan">Kirim pesan</button>
+            </div>
+        </form>
+
+        <form class="form" @submit.prevent="countAction">
+            <div class="form-group">
+                <button class="btn btn-default" type="submit">Like:{{count}}</button>
+                <button class="btn btn-default" type="submit">Dislike:{{count}}</button>
+            </div>
+        </form>
+
+        <my-counter title="Like"></my-counter>
+        <my-counter title="Dislike"></my-counter>
+
+        <br>
+
+        <template id="counter-template">
+            <h1>{{title}}</h1>
+            <button class="btn btn-default" @click="counter +=1">{{counter}}</button>
+        </template>
+        <br />
+
+        <input type="text" v-model="point" /><br />
+        <h2>Your skills is:</h2> <h1>{{skills}}</h1>
+
+        <br />
+
+        <h1>Nama: {{fullname}}</h1>
+        <input type="text" v-model="first" />
+        <input type="text" v-model="last" />
+
+        <br />
+
+
+        <br />
+
+        <br>
+        <pre>
+        {{$data|json}}
+         </pre>
+
+
+    </div>
+
+
+</div>
+
+
+<script src="node_modules/vue/dist/vue.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <link rel="stylesheet" type="text/css" href="node_modules/bootstrap/dist/css/bootstrap.css">
+    <style>
+        .container{
+            padding: 3em;
+        }
+        .completed{
+            text-decoration: line-through;
+        }
+    </style>
+</head>
+<body>
+
+<div id="app">
+    <div class="container">
+        <ul class="list-group">
+            <li :class="['list-group-item',task.completed ? 'completed':'']" v-for="task in tasks">{{task.body}}</li>
+        </ul>
+    </div>
+
+</div>
+
+
+<script src="node_modules/vue/dist/vue.js"></script>
+<script src="js/rendering.js"></script>
+
+</body>
+</html>
